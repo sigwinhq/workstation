@@ -1,6 +1,6 @@
 services:
     hostmanager:
-        image: dkarlovi/docker-hostmanager:latest
+        image: ghcr.io/dkarlovi/docker-hostmanager.rs:1.0.0
         profiles:
             - linux
         restart: always
