@@ -2,14 +2,14 @@ services:
     hostmanager:
         image: ghcr.io/dkarlovi/docker-hostmanager.rs:1.1.0
         profiles:
-            - linux
+            - Linux
         restart: always
         volumes:
             - /etc/hosts:/hosts
             - /var/run/docker.sock:/var/run/docker.sock
 
     cloudflared:
-        image: cloudflare/cloudflared:latest
+        image: cloudflare/cloudflared:2026.2.0
         restart: on-failure
         entrypoint:
             - /bin/sh
