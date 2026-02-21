@@ -2,8 +2,26 @@ services:
     hostmanager:
         image: ghcr.io/dkarlovi/docker-hostmanager.rs:1.1.0
         profiles:
-            - linux
+            - Linux
         restart: always
         volumes:
             - /etc/hosts:/hosts
             - /var/run/docker.sock:/var/run/docker.sock
+
+    cloudflared:
+        image: cloudflare/cloudflared:2026.2.0
+        restart: on-failure
+        entrypoint:
+            - /bin/sh
+            - -c
+        command:
+            - "[ -f /root/.cloudflared/config.yaml ] && exec cloudflared --no-autoupdate tunnel run || exit 0"
+        volumes:
+            - ~/.cloudflared:/root/.cloudflared:ro
+        networks:
+            - public
+
+networks:
+    public:
+        external: true
+        name: public
