@@ -7,3 +7,20 @@ services:
         volumes:
             - /etc/hosts:/hosts
             - /var/run/docker.sock:/var/run/docker.sock
+
+    cloudflared:
+        image: cloudflare/cloudflared:latest
+        restart: on-failure
+        entrypoint:
+            - /bin/sh
+            - -c
+        command:
+            - "[ -f /root/.cloudflared/config.yaml ] && exec cloudflared --no-autoupdate tunnel run || exit 0"
+        volumes:
+            - ~/.cloudflared:/root/.cloudflared:ro
+        networks:
+            - public
+
+networks:
+    public:
+        name: public
