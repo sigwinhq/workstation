@@ -1,0 +1,5 @@
+{
+    "require": {
+        "sigwin/infra": "^1.24"
+    }
+}

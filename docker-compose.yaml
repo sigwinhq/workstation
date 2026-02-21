@@ -23,4 +23,5 @@ services:
 
 networks:
     public:
+        external: true
         name: public
