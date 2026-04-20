@@ -10,14 +10,18 @@ services:
 
     cloudflared:
         image: cloudflare/cloudflared:2026.3.0
-        restart: on-failure
-        entrypoint:
-            - /bin/sh
-            - -c
+        profiles:
+            - Linux
+        restart: unless-stopped
+        user: "0"
+        environment:
+            HOME: $HOME
         command:
-            - "[ -f /root/.cloudflared/config.yaml ] && exec cloudflared --no-autoupdate tunnel run || exit 0"
+            - --no-autoupdate
+            - tunnel
+            - run
         volumes:
-            - ~/.cloudflared:/root/.cloudflared:ro
+            - $HOME/.cloudflared:$HOME/.cloudflared:ro
         networks:
             - public
 
