@@ -9,7 +9,7 @@ services:
             - /var/run/docker.sock:/var/run/docker.sock
 
     cloudflared:
-        image: cloudflare/cloudflared:2026.5.2
+        image: cloudflare/cloudflared:2026.6.0
         profiles:
             - Linux
         restart: unless-stopped
