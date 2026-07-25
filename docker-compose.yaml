@@ -1,6 +1,6 @@
 services:
     hostmanager:
-        image: ghcr.io/dkarlovi/docker-hostmanager.rs:1.4.1
+        image: ghcr.io/dkarlovi/docker-hostmanager.rs:1.5.0
         profiles:
             - Linux
         restart: always
@@ -9,7 +9,7 @@ services:
             - /var/run/docker.sock:/var/run/docker.sock
 
     cloudflared:
-        image: cloudflare/cloudflared:2026.7.2
+        image: cloudflare/cloudflared:2026.7.3
         profiles:
             - Linux
         restart: unless-stopped
