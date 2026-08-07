@@ -7,5 +7,6 @@ vendor/sigwin/infra/resources/Common/default.mk:
 	rm -f composer.*
 
 start: ## Start workstation services
+	git pull
 	docker network inspect public >/dev/null 2>&1 || docker network create public
 	docker compose $(if $(OS_FAMILY),--profile $(OS_FAMILY)) up --detach --remove-orphans
